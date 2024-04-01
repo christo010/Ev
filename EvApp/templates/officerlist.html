@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="text-align: center;">
+    <h1>STAFF</h1>
+    
+   
+    <table class="table table-striped">
+    <tr>
+        <th>name</th>
+        <th>Department</th>
+        
+    </tr>
+
+    {%for i in data%}
+    <tr class="table-warning">
+    <td class="table-primary">{{i.username}}</td>
+    <td class="table-success">{{i.departments}}</td>
+    
+   
+   </tr><br>
+    {%endfor%}
+</table>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">COMPLAINTS</h1>
+    <h2 class="mb-4"><em>Welcome {{ request.user }}</em></h2>
+   
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Complaint Detail</th>
+                    <th>Report</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in data %}
+                <tr >
+                    <td>{{ complaint.username }}</td>
+                    <td>{{ complaint.complaint_description }}</td>
+                   <td><a href="{% url 'Deteview' complaint.id %}">{{complaint.detail_head}}</a></td>
+                    <td>
+
+                        {% if complaint.status %}
+                        <span class="badge bg-success">Resolved</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if complaint.status %}
+                        <a href="{% url 'feedback' complaint.id %}" class="btn btn-outline-dark bg-danger">Feedback</a>
+                        {% endif %}
+                        <a href="{% url 'compdel' complaint.id %}" class="btn btn-outline-dark bg-danger">DELETE</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

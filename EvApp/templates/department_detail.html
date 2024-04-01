@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Detail</title>
+    <style>
+        /* CSS styles for nice styling */
+        .complaint-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9; /* Background color */
+            color: #333; /* Text color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Box shadow */
+        }
+        .complaint-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px; /* Rounded corners for the image */
+        }
+    </style>
+</head>
+<body>
+    {% for i in obj %}
+    <div class="complaint-container" style="background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgIDQ0HBw0HBwcHBw0HBwcHBw8ICQcNFREWFhUREx8YHCggGCYlGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw0NDysZFRkrKy0rKzcrKystKy03NzctKysrLS0rNysrKysrLSsrKysrKysrKysrKysrKysrKysrK//AABEIAJ8BPgMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAACAAMBBQQH/8QAGRABAQEBAQEAAAAAAAAAAAAAAAERAhIh/8QAGgEBAQEBAQEBAAAAAAAAAAAAAgABBQMGBP/EABoRAQEBAQEBAQAAAAAAAAAAAAABERICEwP/2gAMAwEAAhEDEQA/AP1NJPV+VJJJJJJJJJJJJJJJOxwomuw4MKDShwoMODXpHY7FHQpxOOoK9I5RpVyjXpAo06FCvSBRp0KFODRKuUTg1x2uMJJJJJJJJJJJJI0k6rgpJJJJJJJJJJJJJJIoMKJpQ4MODShQ45IUg16R2OqR3ApxxFjlGvSDRp2DQpwKNOjRr0jOjToV516QaNKjWU4NcdrgkkkkkkkkkkkkkaSdVwUkkkkkkkkkkkkkkkUE+U0+T5HlpzBpwpDkc5jSQTjkjuFI7gU4OOYeOWDTgWDTo2BXpGdGtKFGnGdCtKFCvSBRp0KNODRJysNxJMSSSSSSScdcSaJJ1XBSSSSSSSSSSSSSSSR8hGnKbGnLXmM+G3A04fMaSDzGnMGvSKR3CxYJBjlhjRpwLArSjQpxnQrShRpxnQrSjYFekZ0LGlg2DTjOuU7BwTg4sdxYxOOFixNFEkhRJJOuJ1XBdTiSTorUiTmrUnU4k11OOpKNOQ5jTlNjXhtwy4bcDTjXhrzGXLXkacJx1CQ0adGsIKNOhRpQKFaUKFekChWlCjTgULGlg2BYcoWOYeOYJaGLCxYxujiwsWJaGLDxYloYsLFiWsdWjq11scQtWjq1Yi1aOrViLVo67qxEh11Y0nYMKMRRpyHLTlNactuWPLXkTjblpKx5aSicaIZXWE6Ndco1sGjSo0acGhTo0acCjToUKcGjYVco2EGIq5g2ForCTEOOupiFYWLEtHFjqTXwatZ6tdjlxmmrWer0sTTVrPXdbiaatDXdZiPSjOUpWY1pCjOHGY1pGnLKNOWNjXlpyy5acsKNeTjPmnKNKNJVoyuiROOahKKjXa5WHBo0qNGwoNGlRo2FBolXBw4NScHGpJBY1JOi1JJJxOpJ43pemerXcxx2npaz1asTXVrPXdWJppSspSlWNaylKzlKMxNZTlZw+Rsa05rTlly05Gtaxpyy5acjSaQ4zlOCRwoEpRlKOpxCUTlSolHKNdoiUco12jWYUco12jWYUVF2jazCdcc1zR5aerQ1aF8Naag0pRvlpJzVo4ngatDVr6DHHPVo6tbiPXZWeuysxNJTlZQpWWNaytJWMrSUbE1laRlGkGxrTlpyy5a8jWtOWkZ8nAJpDjPk4JHCCEwnUkNanKnBOKjXa5WFBo0hrCGjXaNWE5RtdoVY2K1zXLRtbyRa56C0b03hNfTs6Y+lOmX82vo9O+mHp2dB808ZOfVlddyFruuYsqTuuwfrsiRw4ElOMacacs+T5Gpry05Z8tOQrWnLTlny0g1rTk+Q5PkKUaQoEODSKEMIaUdSiGtTjrjCjlGlRrDGjSo1FBoU6FTRoUqFKQhoWnWdORrlo2qjXpI1WqdCi5iaTpegQXyn/9k=); background-repeat: no-repeat; background-size: cover;">
+        <h2 style="color: #007bff;">{{i.name}}</h2> <!-- Header text color -->
+        <p><strong>Details:</strong> {{i.description}}</p>
+        
+        {% if i.image %}
+            <img src="{{i.image.url}}" alt="Complaint Image" class="complaint-image">
+        {% endif %}
+        {%endfor%}
+        
+    </div>
+</body>
+</html>

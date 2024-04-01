@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="vh-95" style="background-image: url(https://plus.unsplash.com/premium_photo-1674478556514-14b546c8a34e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGdyYWRpZW50fGVufDB8fDB8fHww); background-repeat: no-repeat; background-size: cover;">
+    <div class="container">
+        <h1 class="text-center my-5">COMPLAINTS</h1>
+        <div class="table-responsive" style="background-color: #3e2723;">
+            <table class="table table-secondary" >
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Complaint Detail</th>
+                        <th scope="col">send report</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in data %}
+                    <tr>
+                        <td>{{ complaint.username }}</td>
+                        <td>{{ complaint.complaint_description }}</td>
+                       <td><a href="{% url 'Dete' complaint.id %}">REPORT</a></td>
+                        <td>
+                            {% if complaint.status %}
+                            <span class="badge bg-success">Resolved</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'feedback_view' complaint.id %}" class="btn btn-outline-dark" style="background-color: #9376E0">Comments</a>
+                            <a href="{% url 'complaintedit' complaint.id %}" class="btn btn-outline-dark" style="background-color: #E893CF">Update</a>
+                            <a href="{% url 'detailview' complaint.id %}" class="btn btn-outline-dark" style="background-color: #FFD966">View More</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock content %}

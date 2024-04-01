@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static '/css/style.css'%}">
+    
+
+</head>
+<body >
+    <div style="height: 400px; width: 100%; background: url(https://www.sail.co.in/sites/default/files/banner/2020-09/Right-to-information.jpg); background-repeat: no-repeat; background-size: cover;">
+
+      <div class="text-dark py-0 mt-1 bg-light d-flex align-items-center">
+    <figure class="mr-3">
+        <img src="{% static 'images/images.png'%}" alt="lo" height="80px" width="60px">
+    </figure>
+    <div>
+        <h2 class="mb-0" style="border-bottom: none;">Vigilance Complaint Information Management System</h2>
+        <figcaption >
+            <h5 class="font-monospace">Directorate of Evigilance,Govt of NCT Of KERALA </h5>
+        </figcaption>
+    </div>
+</div>
+
+        
+
+        <nav role="navigation">
+          <div class="py-0 my-1 text-center border-bottom">
+            <img src="" alt="" class="invert">
+          </div>
+        </nav>
+        <div class="navbar-expand-md">
+          <div class="navbar-dark text-center my-2">
+            <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span> <span class="align-middle">Menu</span>
+            </button>
+          </div>
+          <div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto ">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+              </li>
+              
+              {% if request.user.is_authenticated %}
+               {% if not request.user.is_officer %}
+                 
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'complaint' %}"> COMPLAINTS </a>
+              </li>
+              {%endif%}
+              {%else%}
+              <li class="nav-item">
+                <a href="{% url 'admin:index' %}" aria-current="page" class="nav-link active text-light">Admin Panel</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_register' %}"> Register USER </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'officer_login'%}">OFFICER LOGIN</a>
+              </li>{%endif%}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'alldep' %}">DEPARTMENT</a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  VIGILANCE
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'mission' %}">MISSION AND VISION</a></li>
+                  <li><a class="dropdown-item" href="{% url 'officerlist' %}">Our Staff</a></li>
+                  </ul>
+              </li>
+              {% if request.user.is_authenticated %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+              </li>
+              
+
+              {%else%}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'anyo' %}">Anonymous Complaint</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">USER LOGIN</a>
+              </li>
+              {%endif%}
+              {% if request.user.is_authenticated %}
+              {% if not request.user.is_officer %}
+              <li class="nav-item text-light">
+               <strong><p class="nav-link">User:{{request.user}}</p></strong>
+              </li>
+              {%else%}
+              <li class="nav-item text-light">
+                <p class="nav-link">Officer:{{request.user}}</p>
+              </li>
+              {%endif%}
+              {%endif%}
+              
+            </ul>
+
+          </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="text-center" style="margin-top: 20px;">
+      <marquee>  <h4 class="text-primary">"For complaints other than vigilance complaints, the citizen is advised to file his/her complaint/ concern in PGMS or CPGRAMS or LGs Listening Post”</h4></marquee>
+    </div>
+    <div class="container border ">
+
+    </div>
+    <br>
+    <div class="container mt-5 border" >
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4 mt-2">
+          <div class="card" style="width: 18rem;">
+            <img src= "https://th.bing.com/th/id/OIP.bpmUSFkYj2HTyFfMNM4hPgHaEK?rs=1&pid=ImgDetMain" class="card-img-top img-responsive" style="width:100%; height: auto;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Awareness Drawing</h5>
+              <p class="card-text">                
+                "In a rapidly changing world, staying vigilant is essential for our safety. Being aware of our surroundings and potential risks can prevent accidents and protect us from harm. Let's make a commitment to stay alert, stay informed, and look out for one another."
+              </p>
+              
+            </div>
+          </div>
+        </div>
+    
+       
+        <!-- Card 2 -->
+        <div class="col-md-4 mt-2">
+          <div class="card" style="width: 18rem;">
+            <img src="https://slidemodel.com/wp-content/uploads/6195-01-bar-chart-4.jpg" class="card-img-top img-responsive" style="width:100%; height: auto;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Bar Chart</h5>
+              <p class="card-text">
+                "Vigilance, characterized by constant alertness and watchfulness, is crucial in detecting and mitigating potential risks or threats. It demands sustained attention, quick decision-making abilities, and effective response strategies to maintain security and prevent adverse events. "
+
+
+
+
+
+
+              
+            </div>
+          </div>
+        </div>
+        
+                   <!-- Card 3 -->
+                   <div class="col-md-4 mt-2">
+                    <div class="card" style="width: 18rem;">
+                      <img src="https://i.gifer.com/origin/1e/1eb8351bdfcc7372fc4a5f88615d7229.gif" class="card-img-top img-responsive" style="width:100%; height: auto;" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Guardians of Virtue</h5>
+                        <p class="card-text">
+                          " Upholding Vigilance Against Wrongdoing, <p>Ever-present vigilance, a sentinel of righteousness, stands resolute against the tide of wrongdoing, casting its unwavering light upon the shadows of deceit, ensuring purity prevails in every realm."</p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                      
+<style>
+  marquee {
+      color: blue;
+  }
+</style>
+<div>
+  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+      <span id="ctl00_ContentPlaceHolder1_lblReadMore1">“For complaints other than vigilance complaints, the citizen is advised to file his/her
+      complaint/ concern in PGMS or CPGRAMS or LGs Listening Post”</span></marquee>
+
+</div>
+
+  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+      <span id="ctl00_ContentPlaceHolder1_lblReadMore2">Description of Vigilance complaint– “Vigilance angle is obvious in the following acts:-
+     Demanding and/or accepting gratification other than legal remuneration in respect of an
+     official act......</span></marquee>
+</div>
+<link href="css/style.css" rel="stylesheet">
+
+<div class="content">
+
+
+  <div class="row">
+      <div class="col-lg-8">
+
+          <div class="card card-primary card-outline">
+              <div class="card-header">
+                  <h4 class="card-title m-0"><b>
+                      <span id="ctl00_ContentPlaceHolder1_lblHObjective">Objective</span>
+                  </b></h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="card-body bg-cyan" style="padding: 10px; text-align: justify;">
+                          <p class="card-text font-weight-bold">
+                              </p><ul style="font-size: medium; padding: 0px;">
+                                  <span id="ctl00_ContentPlaceHolder1_lblObjective">A Portal for receiving/ lodging online complaints/ information by citizens on corruption
+                            related matters without fear or favour with no confirmation of Complainant’s/ Informer’s
+                            identity required. The portal will keep but not disclose the identity to Authorities taking
+                            cognizance and action on such information/ complaints while ensuring it’s much faster
+                            communication through the portal itself to such Authorities.<br>
+                            Corruption is manifested in various forms such as bribery; nepotism; wilful action or wilful
+                            inaction to benefit someone or to deny benefit to someone known or unknown;
+                            favouritism; failure to follow laid down processes leading to unintended benefit to someone
+                            or denial of benefit to the deserving. The challenge is to create an environment in which the
+                            honest can work fearlessly and the corrupt are punished promptly.</span>
+                              </ul>
+                          <p></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+<br><br>
+          <div class="card card-primary card-outline">
+              <div class="card-header">
+                  <h4 class="card-title m-0"><b>
+                      <span id="ctl00_ContentPlaceHolder1_lblHAdvisory">Advisory</span></b></h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <p class="card-text font-weight-bold">
+                    </p><ul style="font-size: medium; padding: 0px;"><span id="ctl00_ContentPlaceHolder1_lblObjective">
+                      Complainant should not disclose his/her identity in the complaint. The Complainant will be responsible if his/her identity gets disclosed in any manner through any document including audio/video files in his complaint.
+                    </span>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="col-lg-4">
+          <div class="card card-primary card-outline">
+              <div class="card-header">
+                  <h4 class="card-title m-0"><b>
+                      <span id="ctl00_ContentPlaceHolder1_lblCitizenCorner">Citizen's Corner</span></b></h4>
+              </div>
+              <div class="card-body">
+
+                  <div class="row">
+
+                      <div class="col-md-12">
+                          <!-- small box -->
+                          <div class="small-box bg-orange" style="height: 30px;">
+                            
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <div class="row">
+                      
+                      <div class="col-md-12">
+                          <!-- small box -->
+                          <div class="small-box bg-warning" style="height: 45px;">
+                              <div class="inner">
+                                  <center>
+                                      <h4><a style="color: white; margin-bottom: 15px;" data-toggle="tooltip" title="Click here for Lodge Complaint,Know your Complaint Status and Update Additional Information" href="{% url 'login' %}">
+                                          <span id="ctl00_ContentPlaceHolder1_lblLogin">Login (For Registered Users)</span>
+                                      </a></h4>
+                                  </center>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<br>
+<div style="margin-left: 60px;">
+  <p><i><b>Disclaimer</b> : "Information provided in this eVigilance complaint system is not intended as professional advice; users should seek appropriate consultation."</i></p>
+</div>
+
+    <!--footer-->
+    <footer class="bg-dark text-white text-center text-lg-start">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Advisory</h5>
+    
+            <p>
+              Complainant should not disclose his/her identity in the complaint. 
+              The Complainant will be responsible if his/her identity gets disclosed in any manner through any document including audio/video files in his complaint
+            </p>
+          </div>
+          <!--Grid column-->
+    
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            
+    
+            
+            
+          </div>
+          <!--Grid column-->
+    
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h6 class=" mb-2">Follow us on:</h6>
+    
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://www.facebook.com/" class="text-white"><svg xmlns="http://www.w3.org/2000/svg" height="28" width="25" viewBox="0 0 512 512"><path fill="#2522e2" d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg></a>
+              </li>
+              
+              <li>
+                <a href="https://twitter.com/
+                " class="text-white"><svg xmlns="http://www.w3.org/2000/svg" height="27" width="24" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#edeff3" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/" class="text-white"><svg xmlns="http://www.w3.org/2000/svg" height="28" width="25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
+              </li>
+             
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">Vigilance.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    
+</body>
+</html>
